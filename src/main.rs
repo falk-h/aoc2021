@@ -126,16 +126,17 @@ fn run_solution(solution: &Solution) {
 
 fn usage() {
     let usage = "\
-Which solutions should I run?
+Advent of Code 2021
 
 Specify solutions as commmand line arguments or pass --all to run all of them.
 Solutions can be specified as dayX to run the solutions for both parts of that
 day, or as dayX::partY to run a specific part.
 
+Pass -h or --help to show this help text.
+
 Available solutions:";
 
-    eprintln!("{}", usage);
-    eprintln!("{}", list_solutions());
+    eprintln!("{}\n{}", usage, list_solutions());
 }
 
 fn main() {
