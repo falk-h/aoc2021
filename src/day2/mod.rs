@@ -1,7 +1,3 @@
-use util::*;
-
-make_tests!(part1: 150, part2: 900);
-
 #[derive(Default, Debug)]
 struct Submarine {
     horizontal: usize,
@@ -9,7 +5,7 @@ struct Submarine {
     aim: usize,
 }
 
-fn part1(input: Vec<&'static str>) -> usize {
+pub fn part1(input: &[&str]) -> usize {
     let result = input.into_iter().fold(Submarine::default(), |acc, c| {
         match c.split_once(' ').unwrap() {
             ("forward", n) => Submarine {
@@ -30,7 +26,7 @@ fn part1(input: Vec<&'static str>) -> usize {
     result.horizontal * result.vertical
 }
 
-fn part2(input: Vec<&'static str>) -> usize {
+pub fn part2(input: &[&str]) -> usize {
     let result = input.into_iter().fold(Submarine::default(), |acc, c| {
         match c.split_once(' ').unwrap() {
             ("forward", n) => Submarine {

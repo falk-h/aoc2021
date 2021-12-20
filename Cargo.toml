@@ -1,7 +1,7 @@
-[workspace]
-members = [
-    "util",
-    "day1",
-    "day2",
-    "day3",
-]
+[package]
+name = "aoc-2021"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+humantime = "2.1"

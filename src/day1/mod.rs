@@ -1,17 +1,13 @@
-use util::*;
-
-make_tests!(part1: 7, part2: 5);
-
-fn part1(input: Vec<&'static str>) -> usize {
+pub fn part1(input: &[&str]) -> usize {
     input
         .into_iter()
-        .fold((0, "9999"), |(count, last), x| {
+        .fold((0, "9999"), move |(count, last), &x| {
             (count + ((x > last) as usize), x)
         })
         .0
 }
 
-fn part2(input: Vec<&'static str>) -> usize {
+pub fn part2(input: &[&str]) -> usize {
     input
         .into_iter()
         .map(|s| s.parse::<usize>().unwrap())

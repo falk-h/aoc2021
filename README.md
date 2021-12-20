@@ -1,19 +1,25 @@
 # Advent of Code 2021
 
-Run test:
+Run tests:
 
 ```sh
 cargo test
 ```
 
+Run some specific solution:
+
+```sh
+cargo run --release -- dayX::partY
+```
+
 Run some specific day:
 
 ```sh
-cargo run --release --bin dayX
+cargo run --release -- dayX
 ```
 
 Run all days:
 
 ```sh
-for d in day*; do cargo run --release --bin $d; done
+cargo run --release -- --all
 ```
