@@ -9,11 +9,11 @@ cargo test
 Run some specific day:
 
 ```sh
-cargo run --bin dayX
+cargo run --release --bin dayX
 ```
 
 Run all days:
 
 ```sh
-for d in day*; do cargo run --bin $d; done
+for d in day*; do cargo run --release --bin $d; done
 ```
