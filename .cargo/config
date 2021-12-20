@@ -1,0 +1,10 @@
+[build]
+rustflags = ["-C", "target-cpu=native"]
+
+[profile.release]
+lto = true
+codegen-units = 1
+
+[profile.dev]
+# Add some optimization to make debug builds less unrealistically slow.
+opt-level = 2
