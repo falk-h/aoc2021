@@ -6,7 +6,7 @@ struct Submarine {
 }
 
 pub fn part1(input: &[&str]) -> usize {
-    let result = input.into_iter().fold(Submarine::default(), |acc, c| {
+    let result = input.iter().fold(Submarine::default(), |acc, c| {
         match c.split_once(' ').unwrap() {
             ("forward", n) => Submarine {
                 horizontal: acc.horizontal + n.parse::<usize>().unwrap(),
@@ -27,7 +27,7 @@ pub fn part1(input: &[&str]) -> usize {
 }
 
 pub fn part2(input: &[&str]) -> usize {
-    let result = input.into_iter().fold(Submarine::default(), |acc, c| {
+    let result = input.iter().fold(Submarine::default(), |acc, c| {
         match c.split_once(' ').unwrap() {
             ("forward", n) => Submarine {
                 horizontal: acc.horizontal + n.parse::<usize>().unwrap(),
