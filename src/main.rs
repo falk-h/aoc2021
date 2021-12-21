@@ -85,6 +85,10 @@ days! {
         part1: 198,
         part2: 230,
     },
+    day4: {
+        part1: 4512,
+        part2: 1924,
+    },
 }
 
 fn read_input_lines<P: AsRef<Path>>(file: P) -> Vec<String> {
