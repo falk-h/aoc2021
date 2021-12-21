@@ -1,0 +1,8 @@
+[package]
+name = "aoc2021-runner"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+humantime = "2.1"
+aoc2021 = { path = "../solutions" }

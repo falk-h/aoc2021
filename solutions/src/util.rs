@@ -1,19 +1,3 @@
-use std::time::Instant;
-
-use humantime::format_duration;
-
-pub struct Timer(Instant);
-
-impl Timer {
-    pub fn start() -> Self {
-        Self(Instant::now())
-    }
-
-    pub fn stop(self) -> String {
-        format_duration(self.0.elapsed()).to_string()
-    }
-}
-
 pub fn matrix<T: Clone>(val: T, rows: usize, cols: usize) -> Vec<Vec<T>> {
     let mut ret = Vec::with_capacity(rows);
     for _ in 0..ret.capacity() {
