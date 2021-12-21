@@ -3,7 +3,7 @@ use std::{convert::identity, fmt::Display};
 use crate::util;
 
 #[derive(Debug)]
-struct Bingo {
+pub struct Bingo {
     rows: Vec<Vec<usize>>,
     marked: Vec<Vec<bool>>,
 }
@@ -100,7 +100,7 @@ impl Bingo {
     }
 }
 
-fn parse(input: &[&str]) -> (Vec<usize>, Vec<Bingo>) {
+pub fn parse(input: Vec<&str>) -> (Vec<usize>, Vec<Bingo>) {
     let nums = input[0]
         .split(',')
         .map(|n| n.parse::<usize>().unwrap())
@@ -117,8 +117,8 @@ fn parse(input: &[&str]) -> (Vec<usize>, Vec<Bingo>) {
     (nums, bingos)
 }
 
-pub fn part1(input: &[&str]) -> usize {
-    let (nums, mut bingos) = parse(input);
+pub fn part1(input: (Vec<usize>, Vec<Bingo>)) -> usize {
+    let (nums, mut bingos) = input;
 
     for n in nums {
         for bingo in &mut bingos {
@@ -131,8 +131,8 @@ pub fn part1(input: &[&str]) -> usize {
     panic!("No winner!")
 }
 
-pub fn part2(input: &[&str]) -> usize {
-    let (nums, mut bingos) = parse(input);
+pub fn part2(input: (Vec<usize>, Vec<Bingo>)) -> usize {
+    let (nums, mut bingos) = input;
 
     for n in nums {
         let mut to_remove: Vec<usize> = Vec::new();

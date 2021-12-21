@@ -19,23 +19,23 @@ impl Fish {
     }
 }
 
-fn parse(input: &str) -> Vec<usize> {
-    input
+pub fn parse(input: Vec<&str>) -> Vec<usize> {
+    input[0]
         .split(',')
         .map(|n| n.parse::<usize>().unwrap())
         .collect::<Vec<_>>()
 }
 
-pub fn part1(input: &[&str]) -> usize {
-    let mut fish = Fish::new(&parse(input[0]));
+pub fn part1(input: Vec<usize>) -> usize {
+    let mut fish = Fish::new(&input);
     for _ in 0..80 {
         fish.tick();
     }
     fish.count()
 }
 
-pub fn part2(input: &[&str]) -> usize {
-    let mut fish = Fish::new(&parse(input[0]));
+pub fn part2(input: Vec<usize>) -> usize {
+    let mut fish = Fish::new(&input);
     for _ in 0..256 {
         fish.tick();
     }

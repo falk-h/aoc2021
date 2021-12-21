@@ -3,13 +3,13 @@ use std::ops::{Add, AddAssign, Sub, SubAssign};
 use crate::util;
 
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
-struct Point {
+pub struct Point {
     x: isize,
     y: isize,
 }
 
 #[derive(Debug)]
-struct Line {
+pub struct Line {
     start: Point,
     end: Point,
 }
@@ -111,6 +111,10 @@ impl Board {
     }
 }
 
+pub fn parse(input: Vec<&str>) -> Vec<Line> {
+    input.iter().map(|s| Line::parse(s)).collect::<Vec<_>>()
+}
+
 fn board_size(lines: &[Line]) -> (usize, usize) {
     lines.iter().fold((0, 0), |(x, y), l| {
         (
@@ -120,12 +124,8 @@ fn board_size(lines: &[Line]) -> (usize, usize) {
     })
 }
 
-fn parse(input: &[&str]) -> Vec<Line> {
-    input.iter().map(|s| Line::parse(s)).collect::<Vec<_>>()
-}
-
-pub fn part1(input: &[&str]) -> usize {
-    let lines = parse(input)
+pub fn part1(input: Vec<Line>) -> usize {
+    let lines = input
         .into_iter()
         .filter(Line::straight)
         .collect::<Vec<_>>();
@@ -139,12 +139,11 @@ pub fn part1(input: &[&str]) -> usize {
     board.num_overlaps()
 }
 
-pub fn part2(input: &[&str]) -> usize {
-    let lines = parse(input);
-    let (x, y) = board_size(&lines);
+pub fn part2(input: Vec<Line>) -> usize {
+    let (x, y) = board_size(&input);
     let mut board = Board::new(x + 1, y + 1);
 
-    for line in lines {
+    for line in input {
         board.add_line(&line);
     }
 

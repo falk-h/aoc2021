@@ -1,4 +1,4 @@
-fn parse(input: &[&str]) -> Vec<usize> {
+pub fn parse(input: Vec<&str>) -> Vec<usize> {
     input[0]
         .split(',')
         .map(|n| n.parse().unwrap())
@@ -17,10 +17,9 @@ fn abs_diff(a: usize, b: usize) -> usize {
     (a.max(b) - a.min(b)).abs() as usize
 }
 
-pub fn part1(input: &[&str]) -> usize {
-    let nums = parse(input);
-    let median = median(&nums);
-    nums.iter().map(|n| abs_diff(*n, median)).sum()
+pub fn part1(input: Vec<usize>) -> usize {
+    let median = median(&input);
+    input.iter().map(|n| abs_diff(*n, median)).sum()
 }
 
 fn average(nums: &[usize]) -> usize {
@@ -35,8 +34,7 @@ fn weird_diff(a: usize, b: usize) -> usize {
     (diff * (diff + 1)) / 2
 }
 
-pub fn part2(input: &[&str]) -> usize {
-    let nums = parse(input);
-    let average = average(&nums);
-    nums.iter().map(|n| weird_diff(*n, average)).sum()
+pub fn part2(input: Vec<usize>) -> usize {
+    let average = average(&input);
+    input.iter().map(|n| weird_diff(*n, average)).sum()
 }

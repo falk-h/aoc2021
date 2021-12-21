@@ -1,4 +1,8 @@
-pub fn part1(input: &[&str]) -> usize {
+pub fn parse(input: Vec<&str>) -> Vec<&str> {
+    input
+}
+
+pub fn part1(input: Vec<&str>) -> usize {
     let len = input.len();
     let mut counts = vec![0; input[0].len()];
 
@@ -49,9 +53,9 @@ fn do_rating_thing(input: &mut Vec<&str>, invert: bool) -> usize {
     panic!("wth")
 }
 
-pub fn part2(input: &[&str]) -> usize {
-    let o2_rating = do_rating_thing(&mut Vec::from(input), false);
-    let co2_rating = do_rating_thing(&mut Vec::from(input), true);
+pub fn part2(mut input: Vec<&str>) -> usize {
+    let o2_rating = do_rating_thing(&mut input.clone(), false);
+    let co2_rating = do_rating_thing(&mut input, true);
 
     o2_rating * co2_rating
 }

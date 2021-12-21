@@ -5,7 +5,11 @@ struct Submarine {
     aim: usize,
 }
 
-pub fn part1(input: &[&str]) -> usize {
+pub fn parse(input: Vec<&str>) -> Vec<&str> {
+    input
+}
+
+pub fn part1(input: Vec<&str>) -> usize {
     let result = input.iter().fold(Submarine::default(), |acc, c| {
         match c.split_once(' ').unwrap() {
             ("forward", n) => Submarine {
@@ -26,7 +30,7 @@ pub fn part1(input: &[&str]) -> usize {
     result.horizontal * result.vertical
 }
 
-pub fn part2(input: &[&str]) -> usize {
+pub fn part2(input: Vec<&str>) -> usize {
     let result = input.iter().fold(Submarine::default(), |acc, c| {
         match c.split_once(' ').unwrap() {
             ("forward", n) => Submarine {
