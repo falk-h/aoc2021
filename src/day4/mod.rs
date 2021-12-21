@@ -1,5 +1,7 @@
 use std::{convert::identity, fmt::Display};
 
+use crate::util;
+
 #[derive(Debug)]
 struct Bingo {
     rows: Vec<Vec<usize>>,
@@ -39,14 +41,7 @@ impl Bingo {
             .collect::<Vec<_>>();
         assert_eq!(rows.len(), rows[0].len()); // Make sure our bingo is square
 
-        let mut marked = Vec::with_capacity(rows.len());
-        for _ in 0..marked.capacity() {
-            marked.push(vec![false; rows[0].len()]);
-        }
-
-        // Sanity check
-        assert_eq!(marked.len(), rows.len());
-        assert_eq!(marked[0].len(), rows[0].len());
+        let marked = util::matrix(false, rows.len(), rows[0].len());
 
         Self { rows, marked }
     }
