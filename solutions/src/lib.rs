@@ -119,4 +119,9 @@ days! {
         part1: 37,
         part2: 168,
     },
+    day8: {
+        parse -> Vec<(Vec<HashSet<char>>, Vec<HashSet<char>>)>,
+        part1: 26,
+        part2: 61229,
+    },
 }
