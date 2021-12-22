@@ -1,11 +1,11 @@
 mod util;
 
-use std::{any::Any, fmt::Display};
+use std::{any::Any, fmt::Display, time::Duration};
 
 pub struct Solution {
     pub day: &'static str,
     pub part: &'static str,
-    pub run: &'static dyn Fn(Box<dyn Any>) -> usize,
+    pub run: &'static dyn Fn(Box<dyn Any>) -> (usize, Duration),
     pub parse: &'static dyn Fn() -> Box<dyn Any>,
 }
 
@@ -37,7 +37,11 @@ macro_rules! input {
 #[macro_export]
 macro_rules! parsed_input {
     ($day:ident, $parser:ident) => {
-        crate::$day::$parser(crate::input!($day).split_terminator('\n').collect::<Vec<_>>())
+        crate::$day::$parser(
+            crate::input!($day)
+                .split_terminator('\n')
+                .collect::<Vec<_>>(),
+        )
     };
 }
 
@@ -57,7 +61,10 @@ macro_rules! days {
                             std::boxed::Box::new(crate::parsed_input!($day, $parser))
                         },
                         run: &|input| {
-                            crate::$day::$part(*input.downcast().unwrap())
+                            let start = std::time::Instant::now();
+                            let result = crate::$day::$part(*input.downcast().unwrap());
+                            let end = start.elapsed();
+                            (result, end)
                         },
                     },
                 )+

@@ -1,10 +1,7 @@
-mod util;
+use std::{env, process, time::Instant};
 
-use std::{env, process};
-
-use aoc2021::{Solution, SOLUTIONS, DAY_PART_SEPARATOR};
-
-use util::Timer;
+use aoc2021::{Solution, DAY_PART_SEPARATOR, SOLUTIONS};
+use humantime::format_duration;
 
 fn list_solutions() -> String {
     SOLUTIONS
@@ -18,11 +15,9 @@ fn run_solution(solution: &Solution) {
     print!("Running {}...", solution);
 
     let input = (solution.parse)();
-    let start = Timer::start();
-    let answer = (solution.run)(input);
-    let end = start.stop();
+    let (answer, time) = (solution.run)(input);
 
-    println!(" Done in {}, answer: {}", end, answer);
+    println!(" Done in {}, answer: {}", format_duration(time), answer);
 }
 
 fn usage() {
@@ -55,9 +50,9 @@ fn main() {
     }
 
     if env::args().count() == 2 && env::args().nth(1).unwrap() == "--all" {
-        let start = Timer::start();
+        let start = Instant::now();
         SOLUTIONS.iter().for_each(run_solution);
-        println!("\nFinished in {}", start.stop());
+        println!("\nFinished in {}", format_duration(start.elapsed()));
     } else {
         for arg in env::args().skip(1) {
             if let Some((day, part)) = arg.split_once(DAY_PART_SEPARATOR) {
@@ -77,10 +72,10 @@ fn main() {
                 }
 
                 let num_solutions = solutions.len();
-                let start = Timer::start();
+                let start = Instant::now();
                 solutions.into_iter().for_each(run_solution);
                 if num_solutions > 1 {
-                    println!("\nFinished in {}", start.stop());
+                    println!("\nFinished in {}", format_duration(start.elapsed()));
                 }
             }
         }
